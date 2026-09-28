@@ -831,13 +831,9 @@ body.reduced .cap-ask-pop{transition:opacity 140ms;transform:none}
 @media(hover:hover) and (pointer:fine){.cw-seg-opt:hover{color:var(--ink)}}
 .cw-chart-wrap{position:relative;flex:1;min-height:0}
 .cw-chart-wrap svg{display:block;width:100%;height:100%}
-/* stats folded to one line (Console v4): each pair reads label then figure inline, on one
-   baseline, so the row costs a text line instead of a label line plus a figure line */
-.cw-traj-stats{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.06);display:grid;grid-template-columns:repeat(3,1fr);column-gap:20px;flex:none}
-.cw-traj-stat{position:relative;display:flex;align-items:baseline;gap:6px}
-.cw-traj-stat:not(:first-child)::before{content:"";position:absolute;left:-10px;top:2px;bottom:2px;width:1px;background:rgba(255,255,255,.06)}
-.cw-traj-stat-label{font:500 var(--ui-fs-label)/1 var(--font);color:var(--ink2)}
-.cw-traj-stat-fig{font:600 var(--ui-fs-fig)/1 var(--font);letter-spacing:-.01em;color:var(--ink)}
+/* 28 Sep 2026 (the declutter pass): the stats row under the chart is gone. Best week repeated
+   the KPI strip's revenue figure, Q4 with expansion repeated the chip, and at page scale the
+   row read as a third band of small type under the legend; the plot takes its height. */
 .cw-gridline{stroke:rgba(255,255,255,.06);stroke-width:1}
 .cw-glabel{fill:var(--ink2);font:500 var(--ui-fs-label) var(--font)}
 .cw-xlabel{fill:var(--ink2);font:500 var(--ui-fs-label) var(--font)}
@@ -875,38 +871,25 @@ body.reduced .cap-ask-pop{transition:opacity 140ms;transform:none}
 .cw-dec-tag span{font:500 var(--ui-fs-label)/1 var(--font);color:var(--ink2)}
 .cw-dec-more{display:flex;align-items:center;gap:3px}
 .cw-dec-more i{display:block;width:3px;height:3px;border-radius:50%;background:var(--ink2)}
-.cw-dec-title{margin-top:10px;max-width:22ch;font:600 var(--ui-fs-fig)/1.25 var(--font);letter-spacing:-.008em;color:var(--ink);text-wrap:balance}
-.cw-dec-sub{margin-top:5px;font:400 var(--ui-fs-text)/1.5 var(--font);color:var(--ink2)}
-.cw-dec-stats{margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,.08);display:grid;grid-template-columns:1fr 1fr}
-.cw-dec-stat{position:relative}
-.cw-dec-stat:last-child{padding-left:14px}
-.cw-dec-stat:last-child::before{content:"";position:absolute;left:0;top:2px;bottom:2px;width:1px;background:rgba(255,255,255,.08)}
-.cw-dec-stat-label{font:500 var(--ui-fs-label)/1.4 var(--font);color:var(--ink2)}
-.cw-dec-stat-fig{margin-top:4px;display:flex;align-items:baseline;gap:5px;flex-wrap:nowrap;white-space:nowrap}
-.cw-dec-stat-num{font:600 var(--ui-fs-fig)/1 var(--font);letter-spacing:-.01em;color:var(--ink)}
-.cw-dec-stat-unit{font:400 var(--ui-fs-label)/1 var(--font);color:var(--ink2)}
-.cw-dec-stat-delta{font:500 var(--ui-fs-label)/1 var(--font);color:var(--ok);white-space:nowrap}
-.cw-dec-bar{margin-top:6px;height:8px;border-radius:var(--r-pill);overflow:hidden;display:flex;flex:none}
+.cw-dec-title{margin-top:12px;max-width:22ch;font:600 var(--ui-fs-fig)/1.25 var(--font);letter-spacing:-.008em;color:var(--ink);text-wrap:balance}
+.cw-dec-sub{margin-top:6px;font:400 var(--ui-fs-text)/1.5 var(--font);color:var(--ink2);text-wrap:balance}
+/* 28 Sep 2026 (the declutter pass): the card says each thing once. It had said 41% three times
+   (the sentence, the Concentration figure, the legend) and "3 accounts" twice; what is left is
+   the finding, one bar of evidence, the move and what it is worth, and the button. The bar is two
+   segments now, the top 3 lit and everyone else a quiet track, so it needs no legend; the
+   Exposure stat, the legend, "Recommended next move", the 12-customers line and "Explore the
+   evidence" (an href="#" placeholder) are gone. It reads down in one run -- finding, bar, move,
+   what the move is worth -- and the spacer pins the button to the foot, level with the chart's
+   own bottom edge, as the Signals detail pins its actions. */
+.cw-dec-bar{margin-top:16px;height:8px;border-radius:var(--r-pill);overflow:hidden;display:flex;flex:none}
 .cw-dec-bar span{display:block;height:100%}
-.cw-dec-legend{margin-top:6px;display:flex;flex-wrap:wrap;gap:6px 14px}
-.cw-dec-legend-item{display:flex;align-items:center;gap:6px;font:500 var(--ui-fs-label)/1 var(--font);color:var(--ink2)}
-/* mock-ramp fallback (18 Sep, FIX round, P1): three chips in a flex row wrapped to two rows at the
-   label token's +7% (the removed .85 multiplier), growing the console window by 27px. Fix order:
-   label steps down to tick, scoped to this row only -- never a seventh size. */
-.cw-dec-legend .cw-dec-legend-item{font-size:var(--ui-fs-tick)}
-.cw-dec-legend-dot{width:6px;height:6px;border-radius:50%;flex:none}
-/* FIX round 1, V8: restored, in compact form -- the 18 Sep removal left a flex spacer with
-   nothing to absorb but empty space (a ~100px hole at 1440, 70px at 1024, between the upside
-   figure and the button, the visual critic's finding); there was room after all. Label, title
-   and one line, sized off the same ramp the rest of the card reads. */
-.cw-dec-move{margin-top:4px;padding-top:4px;border-top:1px solid rgba(255,255,255,.08)}
-.cw-dec-move-label{font:500 var(--ui-fs-label)/1.2 var(--font);color:var(--ink2)}
-.cw-dec-move-title{margin-top:3px;font:600 var(--ui-fs-text)/1.25 var(--font);color:var(--ink)}
-.cw-dec-move-line{margin-top:2px;font:400 var(--ui-fs-label)/1.25 var(--font);color:var(--ink2)}
-.cw-dec-upside{margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,.08);display:flex;align-items:baseline;gap:8px;flex:none}
+.cw-dec-move{flex:none;margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.08)}
+.cw-dec-move-title{font:600 var(--ui-fs-title)/1.3 var(--font);color:var(--ink)}
+.cw-dec-upside{margin-top:10px;display:flex;align-items:baseline;gap:8px;flex:none}
 .cw-dec-fig{font:600 var(--ui-fs-big)/1 var(--font);letter-spacing:-.01em;color:var(--ok)}
 .cw-dec-fig-label{font:500 var(--ui-fs-label)/1 var(--font);color:var(--ink2)}
-.cw-dec-spacer{flex:1 1 auto;min-height:0}
+.cw-dec-spacer{flex:1 1 auto;min-height:16px}
+.cw-decision .cw-btn{margin-top:0}
 .cw-btn{flex:none;display:flex;align-items:center;justify-content:center;width:100%;height:36px;border-radius:var(--r-md);border:0;margin-top:16px;
   background:var(--ink);color:var(--win-ground);cursor:pointer;position:relative;isolation:isolate;overflow:hidden;
   font:500 var(--ui-fs-text)/1 var(--font);transition:transform 160ms var(--ease-out)}
@@ -914,13 +897,6 @@ body.reduced .cap-ask-pop{transition:opacity 140ms;transform:none}
 .cw-btn:active{transform:scale(.97)}
 @media(hover:hover) and (pointer:fine){.cw-btn:hover::before{opacity:1}.cw-btn:hover{color:var(--win-ground)}}
 @media(prefers-reduced-motion:reduce){.cw-tab::after,.cw-btn::before{transition:none}}
-/* the decision card's own button sits closer under the move block than the .cw-btn default
-   (16px) would -- row B's fixed height leaves no room to spare once the recommended-move block
-   is back (FIX round 1, V8, restoring what an 18 Sep removal made room for and this stage
-   reclaimed) */
-.cw-decision .cw-btn{margin-top:6px}
-.cw-dec-link{flex:none;margin-top:6px;display:inline-block;width:fit-content;position:relative;font:500 var(--ui-fs-text)/1 var(--font);color:var(--ink2);transition:color 160ms}
-@media(hover:hover) and (pointer:fine){.cw-dec-link:hover{color:var(--ink)}}
 
 /* row C: agents, real buttons -- six cells (Console v4), one row each: identity mark + name,
    then status dot + word. The purpose line moved to the Agents screen only. */
@@ -968,71 +944,56 @@ body.reduced .cap-ask-pop{transition:opacity 140ms;transform:none}
 .cw-ask-pop-row.hi,.cw-ask-pop-row:hover{background:rgba(255,255,255,.06)}
 @media(prefers-reduced-motion:reduce){.cw-ask-pop{transition:opacity 140ms;transform:none}}
 
-/* crops below the field, re-sourced from the window's own panels. Named steps (type pass, 18 Sep):
-   .con-crops loses its own margin-top and takes the section's --sp-3 gap (was 40+16=56); inside
-   each crop, plate -> title is --sp-2 and title -> caption is --sp-1 (was a flat 14 for both) */
+/* crops below the field. Named steps (type pass, 18 Sep): .con-crops takes the section's --sp-3
+   gap; inside each crop, plate -> title is --sp-2 and title -> caption is --sp-1.
+   28 Sep 2026 (re-sourced, his ask: "better images for the 3 thumbnails"): each plate is an
+   excerpt of a screen behind the rail -- Signals' evidence, Cash's forecast, the Sources map's
+   agents -- not a second look at Home, which sits directly above. A plate keeps the 1440 frame's
+   own 346:240 at every width, and its excerpt is authored in design px inside a box of that same
+   shape (data-ref wide), then scaled to the plate by one number: --crop-s, plate width over
+   data-ref, written by a ResizeObserver (the crops module, end of the script). So an excerpt is the
+   same picture at every width, only larger or smaller, never re-cut. The CSS values of --crop-s
+   are the 1440 ones, so the first paint there is already right. */
 .con-crops{display:grid;grid-template-columns:var(--tri-cols);gap:var(--sp-3)}
 .con-crop{display:grid;align-content:start}
 /* the crops keep his 16 now that #console's plate-radius override is gone: this rule sits later than
    .lift1 at equal specificity, so it wins (21 Sep 2026, the radius ladder) */
-.con-crop-plate{position:relative;overflow:hidden;height:240px;border-radius:var(--r-xl)}
-.con-crop-plate .con-crop-inner{position:absolute;transform-origin:top left}
+.con-crop-plate{position:relative;overflow:hidden;aspect-ratio:346/240;border-radius:var(--r-xl)}
+.con-crop-inner{position:absolute;top:0;left:0;overflow:hidden;transform-origin:top left;transform:scale(var(--crop-s,1))}
 .con-crop h3{margin:0;margin-top:var(--sp-2)}
 .con-crop p{margin:0;margin-top:var(--sp-1);max-width:32ch}
 
-/* crop 1: decision card excerpt, framed tight on the concentration bar and the upside figure.
-   FIX round 1, V2: re-framed to start exactly at the Concentration block (measured, 114px down
-   the card) instead of mid-sentence through the subtitle -- no fade needed, no partial line at
-   any edge, and at scale 1 the card's own natural height (Concentration through the button,
-   240px, including the restored move block, V8) now matches the plate's fixed 240px almost
-   exactly, so the button lands fully inside the frame, un-faded. */
-.con-crop-decision{top:-114px;left:10px;width:326px;transform:scale(1)}
-/* crop 2: trajectory chart's right half -- the fan, the dashed scenarios, the upside chip.
-   FIX round 1, V3: re-framed lower and tighter (measured against the fan's own box, y 48-108 of
-   the chart's 300-unit-tall svg) -- the fan's own centre now lands on the plate's vertical
-   centre instead of the top third, and "Today" through the fan fills the width, so the lower
-   60% is no longer bare ground. The mask (con-crop-mask-x) still fades the chip's own right
-   edge, the same bleed treatment the other crops carry. */
-.con-crop-traj{top:11px;left:-495px;width:648px;transform:scale(1.4)}
-/* crop 3: the agents detail's run steps and schedule strip, Finance's real data.
-   FIX round 1, V7: bled like crops 1 and 2 -- at scale 1 the panel sat fully inside the plate
-   with margin on every side, so its own rounded corners read as a card floating inside a card.
-   Now larger than the plate and cut by it on all four sides, content filling the frame. */
-.con-crop-agents{top:-6px;left:-4px;width:308px;transform:scale(1.16)}
-/* mock-ramp fallback (18 Sep, closing stage): the label token's removed .85 multiplier (9.35px -> flat
-   10px, +7%) wraps "1 critical finding open. Fix ready." to a second line only here, where the crop's
-   fixed 648px panel leaves less room than the live Home screen's flexible one. Fix order: label steps
-   down to tick, scoped to this crop only -- never a seventh size. */
-/* crop 2 owns its own gradient ids (§3.5) so it never shares a paint server with the live
-   chart; the class rules otherwise point at the live chart's #cwSeriesStroke / #cwExpStroke */
-.con-crop-traj .cw-series{stroke:url(#cwSeriesStrokeCrop)}
-.con-crop-traj .cw-fc-exp{stroke:url(#cwExpStrokeCrop)}
-/* crop 3's own generous spacing (18 Sep FIX): the live panel's row-gap is 0 under its own
-   455px budget pressure, but this crop only shows three steps and can afford real air --
-   each note sits directly under its own title (the shared .cw-agt-step-note rule already
-   does that); this only restores clear air *between* steps, scoped to the crop. */
-.con-crop-agents .cw-agt-trace{row-gap:4px}
-.con-crop-agents .cw-panel{padding-top:9px;padding-bottom:9px}
-.con-crop-agents .cw-agt-hr{margin:2px 0}
-.con-crop-agents .cw-agt-trace-head{margin-bottom:2px}
+/* crop 1: the Signals detail for its first signal, cut to the alert and its evidence. */
+.con-crop-signal{width:350px;height:243px;--crop-s:.98857}
+/* the excerpt sits on the plate itself, as the chart and the map do: the plate is the panel, so
+   no card is nested inside it (the detector's nested-cards finding, and the old V7 "card inside
+   a card" note) -- the alert, its title and its evidence at the detail panel's own 20px inset */
+.con-crop-card{position:absolute;left:22px;right:22px;top:20px}
+.con-crop-card .cw-sig-evidence{margin-top:14px;max-height:none}
+/* crop 2: Cash, thirteen weeks out, framed on the week the curve drops under the floor.
+   crop 3: the Sources map's agent column, its links fading in from the systems off the left edge. */
+.con-crop-cash{width:300px;height:208px;--crop-s:1.15333}
+.con-crop-map{width:316px;height:219px;--crop-s:1.09494}
+.con-crop-cash svg,.con-crop-map svg{display:block;overflow:hidden}
+/* inside an excerpt, the Cash callout sits on the plate's own flat ground, where a backdrop blur
+   has nothing to blur: drop it, so a rescale does not repaint a blur surface */
+.con-crop-inner .cw-csh-callout{-webkit-backdrop-filter:none;backdrop-filter:none}
 
-/* crop edge masks: fade instead of a hard clip when the inner excerpt runs past the plate */
-.con-crop-mask-x{-webkit-mask-image:linear-gradient(90deg,#000 70%,transparent);mask-image:linear-gradient(90deg,#000 70%,transparent)}
-.con-crop-mask-y{-webkit-mask-image:linear-gradient(180deg,#000 70%,transparent);mask-image:linear-gradient(180deg,#000 70%,transparent)}
-.con-crop-mask-x.con-crop-mask-y{
-  -webkit-mask-image:linear-gradient(90deg,#000 70%,transparent),linear-gradient(180deg,#000 70%,transparent);
-  -webkit-mask-composite:source-in;
-  mask-image:linear-gradient(90deg,#000 70%,transparent),linear-gradient(180deg,#000 70%,transparent);
-  mask-composite:intersect}
-
+/* 900 and under: one crop to a row, the plate beside its caption, so a plate stays thumbnail
+   sized instead of stretching across the column; 640 and under -- where the console window itself
+   is hidden and the crops carry the section -- each plate takes the column, caption under it. */
 @media(max-width:900px){
-  .con-crops{grid-template-columns:1fr}
-  .con-crop-plate{height:200px}
-  /* FIX round 1, V2: crop 1's own re-frame was measured against the 240px plate; at this
-     narrower 200px plate the same scale ran the button 41px past the frame. Scaled down to fit
-     the smaller height, recentred -- still starts at Concentration, still ends on the button,
-     fully inside, un-faded. */
-  .con-crop-decision{top:-95px;left:32px;transform:scale(.83)}
+  .con-crops{grid-template-columns:minmax(0,1fr)}
+  .con-crop{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto auto;column-gap:var(--sp-3);align-content:center}
+  .con-crop-plate{grid-column:1;grid-row:1/3}
+  .con-crop h3{grid-column:2;align-self:end;margin-top:0}
+  .con-crop p{grid-column:2;align-self:start}
+}
+@media(max-width:640px){
+  .con-crop{grid-template-columns:minmax(0,1fr);grid-template-rows:none}
+  .con-crop-plate{grid-row:auto}
+  .con-crop h3{grid-column:1;margin-top:var(--sp-2)}
+  .con-crop p{grid-column:1}
 }
 
 /* ---------------------------------------------------------------- screens ---------------------------------------------------------------- */
@@ -1133,14 +1094,14 @@ body.reduced .cap-ask-pop{transition:opacity 140ms;transform:none}
 .cw-sig-lanes{grid-column:1/9;grid-row:1;display:flex;flex-direction:column;min-height:0}
 .cw-sig-lanes-head{display:flex;align-items:center;justify-content:space-between;gap:16px}
 .cw-sig-lanes-h{font:500 var(--ui-fs-title)/1.3 var(--font);color:var(--ink)}
-.cw-sig-legend{display:flex;align-items:center;gap:16px}
-.cw-sig-legend-item{display:flex;align-items:center;gap:6px;font:500 var(--ui-fs-label)/1 var(--font);color:var(--ink2)}
-.cw-sig-legend-dot{width:6px;height:6px;border-radius:50%;flex:none}
+/* 28 Sep 2026 (the declutter pass): no legend over the lanes -- each lane already carries its
+   name at its left end, so Critical, Watch and Noted were said twice -- and no day ticks: fourteen
+   vertical hairlines under the dots read as a grid of noise once the window is scaled down. The
+   lanes, the dates every third day and the Now rule carry the time axis on their own. */
 .cw-sig-lane-wrap{position:relative;height:151px;margin-top:10px}
 .cw-sig-lane-wrap svg{display:block;width:100%;height:100%}
 .cw-sig-lane-label{fill:var(--ink2);font:500 var(--ui-fs-label) var(--font);cursor:default}
 .cw-sig-lane-base{stroke:var(--hair2);stroke-width:1}
-.cw-sig-daytick{stroke:rgba(255,255,255,.07);stroke-width:1}
 .cw-sig-xlabel{fill:var(--ink2);font:500 var(--ui-fs-label) var(--font)}
 .cw-sig-now-line{stroke:var(--a2);stroke-width:1}
 .cw-sig-now-label{fill:var(--a2);font:500 var(--ui-fs-label) var(--font)}
@@ -1164,7 +1125,7 @@ body.reduced .cap-ask-pop{transition:opacity 140ms;transform:none}
 .cw-sig-list-h{font:500 var(--ui-fs-title)/1.3 var(--font);color:var(--ink)}
 .cw-sig-list-count{font:500 var(--ui-fs-title)/1 var(--font);color:var(--ink2)}
 .cw-sig-rows{margin-top:2px;display:flex;flex-direction:column}
-.cw-sig-row{position:relative;display:flex;align-items:center;gap:10px;width:100%;padding:5px 4px;background:none;border:0;border-top:1px solid rgba(255,255,255,.06);text-align:left;cursor:pointer;color:inherit;transition:opacity 160ms,background 120ms}
+.cw-sig-row{position:relative;display:flex;align-items:center;gap:10px;width:100%;padding:13px 4px;background:none;border:0;border-top:1px solid rgba(255,255,255,.06);text-align:left;cursor:pointer;color:inherit;transition:opacity 160ms,background 120ms}
 .cw-sig-rows .cw-sig-row:first-child{border-top:0}
 .cw-sig-row[aria-pressed="true"]{background:rgba(255,255,255,.05)}
 .cw-sig-row[aria-pressed="true"]::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--cw-actual),var(--cw-live))}
@@ -1175,14 +1136,12 @@ body.reduced .cap-ask-pop{transition:opacity 140ms;transform:none}
 .cw-sig-row-dot.noted{background:var(--info)}
 .cw-sig-row-main{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
 .cw-sig-row-title{font:500 var(--ui-fs-title)/1.25 var(--font);color:var(--ink)}
-.cw-sig-row-sub{font:400 var(--ui-fs-label)/1.3 var(--font);color:var(--ink2)}
 /* the identity icons (18 Sep, round 3): drawn marks, not tiles -- 14px in the Home strip, the
-   roster and the Sources chips (that size is the default), 16px in the Agents detail head,
-   10px inline on the Signals list's source line. Never in place of the status dot. */
+   roster and the Sources chips (that size is the default), 16px in the Agents detail head.
+   Never in place of the status dot. (The Signals list's source line, which carried a 6px dot
+   in the agent's colour instead, is gone since the 28 Sep declutter pass.) */
 .cw-agico{display:inline-block;width:14px;height:14px;flex:none;vertical-align:middle}
 .cw-agico--lg{width:16px;height:16px}
-/* the Signals list's 6px dot fallback (I1: the icon read as mush at 10px true size) */
-.cw-agdot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:5px;vertical-align:1px;flex:none}
 .cw-sig-row-time{flex:none;font:500 var(--ui-fs-label)/1 var(--font);color:var(--ink2)}
 .cw-sig-row.cw-sig-hide{display:none}
 
@@ -1223,7 +1182,7 @@ body.reduced .cap-ask-pop{transition:opacity 140ms;transform:none}
 .cw-sig-ev-pt-dot{width:6px;height:6px;border-radius:50%;background:var(--a2)}
 .cw-sig-ev-pt-v{color:var(--ink);font-weight:600}
 .cw-sig-ev-pt-l{color:var(--ink2);white-space:nowrap}
-.cw-sig-conf{margin-top:8px;display:flex;align-items:center;gap:10px}
+.cw-sig-conf{margin-top:14px;display:flex;align-items:center;gap:10px}
 .cw-sig-conf-bar{display:flex;gap:3px;flex:none}
 .cw-sig-conf-bar span{width:20px;height:4px;border-radius:var(--r-2xs);background:rgba(255,255,255,.12)}
 .cw-sig-conf-bar span:nth-child(1).on{background:var(--cw-plan)}
@@ -1300,7 +1259,8 @@ body.reduced .cap-ask-pop{transition:opacity 140ms;transform:none}
 .cw-agt-det-inner{margin-top:6px;flex:1;display:flex;flex-direction:column;min-height:0;transition:opacity 120ms,transform 120ms}
 @media(prefers-reduced-motion:reduce){.cw-agt-det-inner{transition:opacity 140ms}}
 
-/* roster body: run trace, schedule, today's output, actions */
+/* roster body: run trace, schedule, actions (28 Sep: no output block, no step notes -- with the
+   room they gave back, the rule and the actions stand clear of the trace instead of 4-6px off it) */
 .cw-agt-trace-head{flex:none;font:500 var(--ui-fs-label)/1.4 var(--font);color:var(--ink2)}
 .cw-agt-trace-head .num{color:var(--ink2)}
 .cw-agt-trace{position:relative;flex:1;min-height:0;margin-top:6px;row-gap:0;display:flex;flex-direction:column;justify-content:space-between}
@@ -1314,12 +1274,11 @@ body.reduced .cap-ask-pop{transition:opacity 140ms;transform:none}
 .cw-agt-step-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
 .cw-agt-step-title{font:500 var(--ui-fs-title)/1.3 var(--font);color:var(--ink)}
 .cw-agt-step-dur{flex:none;font:500 var(--ui-fs-label)/1 var(--font);color:var(--ink2)}
-.cw-agt-step-note{margin-top:2px;font:400 var(--ui-fs-tick)/1.4 var(--font);color:var(--ink2)}
 .cw-agt-pulse{position:absolute;left:0;top:0;width:9px;height:9px;pointer-events:none;opacity:0;z-index:2}
 .cw-agt-pulse.on{opacity:1}
 .cw-agt-pulse-dot{width:5px;height:5px;margin:2px;border-radius:50%;background:var(--a2)}
 
-.cw-agt-hr{flex:none;margin:4px 0;height:1px;background:rgba(255,255,255,.08)}
+.cw-agt-hr{flex:none;margin:14px 0 12px;height:1px;background:rgba(255,255,255,.08)}
 
 .cw-agt-sched{flex:none}
 .cw-agt-sched-ticks{position:relative;display:flex;gap:3px;height:14px;align-items:flex-end;width:100%}
@@ -1330,16 +1289,9 @@ body.reduced .cap-ask-pop{transition:opacity 140ms;transform:none}
 .cw-agt-sched-now{position:absolute;top:-3px;bottom:-3px;width:1px;background:var(--cw-live)}
 .cw-agt-sched-hours{position:relative;height:11px;margin-top:3px}
 .cw-agt-sched-hour{position:absolute;top:0;transform:translateX(-50%);font:500 var(--ui-fs-tick)/1 var(--font);color:var(--ink2)}
-.cw-agt-sched-label{margin-top:3px;font:500 var(--ui-fs-label)/1.4 var(--font);color:var(--ink2)}
 
-.cw-agt-output-head{flex:none;font:500 var(--ui-fs-label)/1.4 var(--font);color:var(--ink2)}
-.cw-agt-output{flex:none;margin-top:2px;display:flex;flex-direction:column}
-.cw-agt-output-row{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:3px 0;border-top:1px solid rgba(255,255,255,.06);font:400 var(--ui-fs-text)/1.4 var(--font)}
-.cw-agt-output .cw-agt-output-row:first-child{border-top:0}
-.cw-agt-output-name{color:var(--ink);flex:none}
-.cw-agt-output-state{color:var(--ink2);text-align:right}
 
-.cw-agt-det-actions{flex:none;margin-top:6px;display:flex;gap:8px}
+.cw-agt-det-actions{flex:none;margin-top:18px;display:flex;gap:8px}
 .cw-agt-btn-primary{flex:1;min-width:0;height:32px;padding:0 10px;border-radius:var(--r-md);border:0;background:var(--ink);color:var(--win-ground);
   font:500 var(--ui-fs-text)/1 var(--font);cursor:pointer;transition:transform 160ms var(--ease-out),opacity 160ms;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -1360,7 +1312,9 @@ body.reduced .cap-ask-pop{transition:opacity 140ms;transform:none}
 .cw-agt-run-dur{flex:none;width:38px;font:500 var(--ui-fs-label)/1 var(--font);color:var(--ink2)}
 .cw-agt-run-desc{flex:1;min-width:0;font:400 var(--ui-fs-text)/1.4 var(--font);color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cw-agt-run-pill{flex:none;display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:var(--r-sm);font:500 var(--ui-fs-label)/1 var(--font)}
-.cw-agt-run-pill.ok{color:var(--ok);background:var(--ok-fill)}
+/* 28 Sep (the declutter pass): colour only the exception. Seven green Clean pills a tab made the
+   one finding the hardest thing to see; a clean run is plain secondary ink now, a finding keeps its pill */
+.cw-agt-run-clean{flex:none;font:500 var(--ui-fs-label)/1 var(--font);color:var(--ink2);padding:0 8px}
 .cw-agt-run-pill.warn{color:var(--warn);background:var(--warn-fill)}
 .cw-agt-run-pill.danger{color:var(--danger);background:var(--danger-fill)}
 
@@ -1446,19 +1400,19 @@ body.reduced .cap-ask-pop{transition:opacity 140ms;transform:none}
 /* receivables */
 .cw-csh-recv{grid-column:9/13;display:flex;flex-direction:column;min-height:0}
 .cw-csh-recv.cw-panel{padding-bottom:20px}
-.cw-csh-recv-h{flex:none;font:500 var(--ui-fs-title)/1.3 var(--font);color:var(--ink)}
-.cw-csh-recv-sub{flex:none;margin-top:3px;font:500 var(--ui-fs-label)/1.4 var(--font);color:var(--ink2)}
-.cw-csh-aging{flex:none;margin-top:8px;height:10px;border-radius:var(--r-pill);display:flex;gap:2px;overflow:hidden}
+/* 28 Sep 2026 (the declutter pass): the total sits on the title's line, the four-way legend
+   becomes the bar's two ends (blue to red already reads as current to late), and the queue label
+   and the footnote are gone. The button keeps its place at the foot, level with the chart's. */
+.cw-csh-recv-head{flex:none;display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.cw-csh-recv-h{font:500 var(--ui-fs-title)/1.3 var(--font);color:var(--ink)}
+.cw-csh-recv-total{flex:none;font:600 var(--ui-fs-fig)/1 var(--font);letter-spacing:-.01em;color:var(--ink)}
+.cw-csh-aging{flex:none;margin-top:14px;height:10px;border-radius:var(--r-pill);display:flex;gap:2px;overflow:hidden}
 .cw-csh-aging span{display:block;height:100%;border-radius:var(--r-2xs)}
-/* one row of four (Console v4, was a 2x2 wrap): the 628px panel has room at tick size */
-.cw-csh-aging-legend{flex:none;margin-top:6px;display:grid;grid-template-columns:repeat(4,1fr);column-gap:8px}
-.cw-csh-aging-item{display:flex;align-items:center;gap:5px;font:500 var(--ui-fs-tick)/1.2 var(--font);color:var(--ink2);min-width:0}
-.cw-csh-aging-dot{width:6px;height:6px;border-radius:50%;flex:none}
-.cw-csh-hair{flex:none;margin:5px 0;height:1px;background:rgba(255,255,255,.08)}
-.cw-csh-queue-label{flex:none;font:500 var(--ui-fs-label)/1.4 var(--font);color:var(--ink2)}
-.cw-csh-queue{flex:none;margin-top:2px;display:flex;flex-direction:column}
-.cw-csh-qrow{padding:3px 0;border-top:1px solid rgba(255,255,255,.06)}
-.cw-csh-queue .cw-csh-qrow:first-child{border-top:0;padding-top:3px}
+.cw-csh-aging-ends{flex:none;margin-top:7px;display:flex;justify-content:space-between;gap:10px;font:500 var(--ui-fs-label)/1.2 var(--font);color:var(--ink2)}
+.cw-csh-hair{flex:none;margin:14px 0 2px;height:1px;background:rgba(255,255,255,.08)}
+.cw-csh-queue{flex:none;margin-bottom:16px;display:flex;flex-direction:column}
+.cw-csh-qrow{padding:9px 0;border-top:1px solid rgba(255,255,255,.06)}
+.cw-csh-queue .cw-csh-qrow:first-child{border-top:0}
 .cw-csh-qrow-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
 .cw-csh-qrow-name{font:500 var(--ui-fs-text)/1.3 var(--font);color:var(--ink)}
 .cw-csh-qrow-amt{flex:none;font:500 var(--ui-fs-text)/1 var(--font);color:var(--ink)}
@@ -1469,7 +1423,7 @@ body.reduced .cap-ask-pop{transition:opacity 140ms;transform:none}
 .cw-csh-btn::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--a3);opacity:0;transition:opacity 120ms}
 .cw-csh-btn:active{transform:scale(.97)}
 @media(hover:hover) and (pointer:fine){.cw-csh-btn:hover::before{opacity:1}.cw-csh-btn:hover{color:var(--win-ground)}}
-.cw-csh-btn-note{flex:none;margin-top:8px;font:400 var(--ui-fs-label)/1.4 var(--font);color:var(--ink2)}
+.cw-csh-recv .cw-csh-btn{margin-top:auto}
 
 /* row C: payables */
 .cw-csh-row-c{grid-column:1/13;min-height:0}
@@ -1484,15 +1438,16 @@ body.reduced .cap-ask-pop{transition:opacity 140ms;transform:none}
 .cw-csh-pay-cell:active{transform:scale(.97)}
 /* two lines a cell (Console v4): vendor + amount, then date + pill */
 .cw-csh-pay-row1{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
-.cw-csh-pay-row2{margin-top:6px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.cw-csh-pay-row2{margin-top:6px;min-height:20px;display:flex;align-items:center;justify-content:space-between;gap:8px}
 .cw-csh-pay-vendor{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:500 var(--ui-fs-title)/1.3 var(--font);color:var(--ink)}
 .cw-csh-pay-amt{flex:none;font:600 var(--ui-fs-fig)/1 var(--font);letter-spacing:-.01em;color:var(--ink)}
 .cw-csh-pay-date{flex:none;font:500 var(--ui-fs-label)/1.3 var(--font);color:var(--ink2)}
 .cw-csh-pill{display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:var(--r-sm);flex:none;
   font:500 var(--ui-fs-label)/1 var(--font)}
-.cw-csh-pill.info{color:var(--info);background:var(--info-fill)}
-.cw-csh-pill.ok{color:var(--ok);background:var(--ok-fill)}
 .cw-csh-pill.warn{color:var(--warn);background:var(--warn-fill)}
+/* 28 Sep (the declutter pass): colour only the exception -- the held payment keeps its pill;
+   Scheduled and Approved are routine, and read in plain secondary ink */
+.cw-csh-pay-state{flex:none;font:500 var(--ui-fs-label)/1 var(--font);color:var(--ink2)}
 
 /* screen: sources */
 /* row A: intro + kpi strip, same shape as the home kpi panel */
@@ -1500,10 +1455,10 @@ body.reduced .cap-ask-pop{transition:opacity 140ms;transform:none}
 .cw-src-intro{grid-column:1/8;align-self:start}
 .cw-src-head{font:600 var(--ui-fs-big)/1.2 var(--font);letter-spacing:-.01em;color:var(--ink)}
 .cw-src-meta{margin-top:8px;font:400 var(--ui-fs-text)/1.5 var(--font);color:var(--ink2)}
-/* mock-ramp fallback (18 Sep, FIX round, P2): the sources-screen meta line wrapped to two lines at
-   the text token's +3.5%, "five minutes." alone on the second. Fix order: text steps down to label,
-   scoped to this selector only -- never a seventh size. */
-p.cw-src-meta{font-size:var(--ui-fs-label)}
+/* 28 Sep 2026 (the declutter pass): the 18 Sep fallback that stepped this line down to the label
+   size (it wrapped at the text size, "five minutes." alone on a second line) is gone with the
+   clause that made it long -- the Freshness figure beside it already says how fresh -- so every
+   screen's intro line reads the text size again. */
 .cw-src-kpis{grid-column:8/13;align-self:start;display:grid;grid-template-columns:repeat(3,1fr);column-gap:20px}
 .cw-src-kpis.cw-panel{padding:10px 16px}
 .cw-src-kpi{position:relative}
@@ -1534,6 +1489,7 @@ p.cw-src-meta{font-size:var(--ui-fs-label)}
 .cw-src-chip:focus-visible .cw-src-chip-rect{stroke:var(--a1)}
 .cw-src-chip-label{fill:var(--ink);font:500 var(--ui-fs-label) var(--font)}
 .cw-src-chip-age{fill:var(--ink2);font:500 var(--ui-fs-label) var(--font)}
+.cw-src-chip-age.warn{fill:var(--warn)}
 .cw-src-dot{transition:fill 160ms}
 .cw-src-dot.ok{fill:var(--ok)}
 .cw-src-dot.warn{fill:var(--warn)}
@@ -1562,7 +1518,7 @@ p.cw-src-meta{font-size:var(--ui-fs-label)}
 .cw-src-log-source{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:500 var(--ui-fs-text)/1.3 var(--font);color:var(--ink)}
 .cw-src-log-rows{font:500 var(--ui-fs-label)/1 var(--font);color:var(--ink);text-align:right}
 .cw-src-log-pill{display:inline-flex;align-items:center;height:19px;padding:0 8px;border-radius:var(--r-sm);font:500 var(--ui-fs-label)/1 var(--font)}
-.cw-src-log-pill.ok{color:var(--ok);background:var(--ok-fill)}
+/* 28 Sep (the declutter pass): no Clean pill on five of six rows -- the one Slow read is the news */
 .cw-src-log-pill.warn{color:var(--warn);background:var(--warn-fill)}
 .cw-src-table{margin-top:8px;width:100%;border-collapse:collapse}
 .cw-src-table th{text-align:left;font:500 var(--ui-fs-label)/1.4 var(--font);color:var(--ink2);padding:0 10px 5px 0;border-bottom:1px solid rgba(255,255,255,.08)}
@@ -2066,23 +2022,24 @@ p.cw-src-meta{font-size:var(--ui-fs-label)}
 
                       <g id="cwXlabels"></g>
 
-                      <line class="cw-legend-y" x1="31" y1="273" x2="44.6" y2="273" stroke="var(--cw-actual)" stroke-width="2"/>
-                      <text class="cw-legend-label cw-legend-t" fill="var(--cw-actual)" x="50.4" y="277">Actual</text>
                       </g>
+                      <!-- 28 Sep 2026 (the declutter pass): the legend names the three scenarios only.
+                           "Actual" is gone -- the one solid line needs no key -- and the three toggles
+                           close up from x 31, 28 units apart, instead of spreading across the plot. -->
                       <g class="cw-legend-btn" id="cwLegExp" data-scenario="exp" tabindex="0" role="button" aria-pressed="false" aria-label="Toggle expansion plan scenario">
-                        <rect class="cw-legend-hit" x="141.5" y="264" width="87.2" height="20" fill="transparent"/>
-                        <line class="cw-fc cw-fc-exp cw-legend-y" x1="147.3" y1="273" x2="161" y2="273"/>
-                        <text class="cw-legend-label cw-legend-t" fill="var(--cw-plan)" x="166.7" y="277">Expansion plan</text>
+                        <rect class="cw-legend-hit" x="25.2" y="264" width="98.2" height="20" fill="transparent"/>
+                        <line class="cw-fc cw-fc-exp cw-legend-y" x1="31" y1="273" x2="44.6" y2="273"/>
+                        <text class="cw-legend-label cw-legend-t" fill="var(--cw-plan)" x="50.4" y="277">Expansion plan</text>
                       </g>
                       <g class="cw-legend-btn" id="cwLegCur" data-scenario="cur" tabindex="0" role="button" aria-pressed="false" aria-label="Toggle current path scenario">
-                        <rect class="cw-legend-hit" x="296.6" y="264" width="77.5" height="20" fill="transparent"/>
-                        <line class="cw-fc cw-fc-cur cw-legend-y" x1="302.4" y1="273" x2="316" y2="273"/>
-                        <text class="cw-legend-label cw-legend-t" fill="var(--cw-quiet-1)" x="321.8" y="277">Current path</text>
+                        <rect class="cw-legend-hit" x="139.8" y="264" width="88.4" height="20" fill="transparent"/>
+                        <line class="cw-fc cw-fc-cur cw-legend-y" x1="145.6" y1="273" x2="159.2" y2="273"/>
+                        <text class="cw-legend-label cw-legend-t" fill="var(--cw-quiet-1)" x="165" y="277">Current path</text>
                       </g>
                       <g class="cw-legend-btn" id="cwLegCon" data-scenario="con" tabindex="0" role="button" aria-pressed="false" aria-label="Toggle conservative scenario">
-                        <rect class="cw-legend-hit" x="422.7" y="264" width="87.2" height="20" fill="transparent"/>
-                        <line class="cw-fc cw-fc-con cw-legend-y" x1="428.4" y1="273" x2="442" y2="273"/>
-                        <text class="cw-legend-label cw-legend-t" fill="var(--cw-quiet-1)" x="447.8" y="277">Conservative</text>
+                        <rect class="cw-legend-hit" x="244.6" y="264" width="89.6" height="20" fill="transparent"/>
+                        <line class="cw-fc cw-fc-con cw-legend-y" x1="250.4" y1="273" x2="264" y2="273"/>
+                        <text class="cw-legend-label cw-legend-t" fill="var(--cw-quiet-1)" x="269.8" y="277">Conservative</text>
                       </g>
 
                       <g aria-hidden="true">
@@ -2092,17 +2049,6 @@ p.cw-src-meta{font-size:var(--ui-fs-label)}
                     </svg>
                     <div class="cw-chip" id="cwChip">+14% with expansion</div>
                     <div class="cw-xh-readout" id="cwXhReadout"></div>
-                  </div>
-                  <div class="cw-traj-stats">
-                    <div class="cw-traj-stat">
-                      <span class="cw-traj-stat-label">Best week</span><span class="cw-traj-stat-fig num">128.4k</span>
-                    </div>
-                    <div class="cw-traj-stat">
-                      <span class="cw-traj-stat-label">Q4 with expansion</span><span class="cw-traj-stat-fig num">172k</span>
-                    </div>
-                    <div class="cw-traj-stat">
-                      <span class="cw-traj-stat-label">Forecast confidence</span><span class="cw-traj-stat-fig num">82%</span>
-                    </div>
                   </div>
                 </div>
 
@@ -2119,36 +2065,18 @@ p.cw-src-meta{font-size:var(--ui-fs-label)}
                     </div>
                   </div>
                   <h3 class="cw-dec-title">Growth is getting concentrated.</h3>
-                  <p class="cw-dec-sub">Your top 3 accounts now contribute 41% of revenue.</p>
-                  <div class="cw-dec-stats">
-                    <div class="cw-dec-stat">
-                      <p class="cw-dec-stat-label">Concentration</p>
-                      <div class="cw-dec-stat-fig"><span class="cw-dec-stat-num num">41%</span><span class="cw-dec-stat-delta num">+7 pts</span></div>
-                    </div>
-                    <div class="cw-dec-stat">
-                      <p class="cw-dec-stat-label">Exposure</p>
-                      <div class="cw-dec-stat-fig"><span class="cw-dec-stat-num num">3</span><span class="cw-dec-stat-unit">accounts</span></div>
-                    </div>
-                  </div>
-                  <div class="cw-dec-bar" role="img" aria-label="Revenue concentration: top 3 accounts 41 percent, next 7 accounts 28 percent, all others 31 percent">
-                    <span style="width:41%;background:var(--cw-actual)"></span><span style="width:28%;background:var(--cw-plan)"></span><span style="width:31%;background:rgba(255,255,255,.14)"></span>
-                  </div>
-                  <div class="cw-dec-legend">
-                    <span class="cw-dec-legend-item"><span class="cw-dec-legend-dot" style="background:var(--cw-actual)"></span>Top 3 accounts 41%</span>
-                    <span class="cw-dec-legend-item"><span class="cw-dec-legend-dot" style="background:var(--cw-plan)"></span>Next 7 28%</span>
-                    <span class="cw-dec-legend-item"><span class="cw-dec-legend-dot" style="background:rgba(255,255,255,.14)"></span>All others 31%</span>
-                  </div>
-                  <div class="cw-dec-upside">
-                    <span class="cw-dec-fig num">+18.4k</span><span class="cw-dec-fig-label">potential monthly upside</span>
+                  <p class="cw-dec-sub">Your top 3 accounts now contribute 41% of revenue, up 7 points.</p>
+                  <div class="cw-dec-bar" role="img" aria-label="Revenue concentration: top 3 accounts 41 percent, all others 59 percent">
+                    <span style="width:41%;background:var(--cw-actual)"></span><span style="width:59%;background:rgba(255,255,255,.12)"></span>
                   </div>
                   <div class="cw-dec-move">
-                    <p class="cw-dec-move-label">Recommended next move</p>
                     <p class="cw-dec-move-title">Expand beyond your top accounts.</p>
-                    <p class="cw-dec-move-line">12 customers show strong expansion signals.</p>
+                    <div class="cw-dec-upside">
+                      <span class="cw-dec-fig num">+18.4k</span><span class="cw-dec-fig-label">potential monthly upside</span>
+                    </div>
                   </div>
                   <div class="cw-dec-spacer" aria-hidden="true"></div>
                   <button type="button" class="cw-btn" id="cwSheetOpenBtn">Review expansion plan</button>
-                  <a class="cw-dec-link" href="#">Explore the evidence</a>
                 </div>
               </div>
 
@@ -2198,11 +2126,6 @@ p.cw-src-meta{font-size:var(--ui-fs-label)}
     <div class="cw-sig-lanes cw-panel">
       <div class="cw-sig-lanes-head">
         <h3 class="cw-sig-lanes-h">The last fourteen days</h3>
-        <div class="cw-sig-legend" aria-hidden="true">
-          <span class="cw-sig-legend-item"><i class="cw-sig-legend-dot" style="background:var(--danger)"></i>Critical</span>
-          <span class="cw-sig-legend-item"><i class="cw-sig-legend-dot" style="background:var(--warn)"></i>Watch</span>
-          <span class="cw-sig-legend-item"><i class="cw-sig-legend-dot" style="background:var(--info)"></i>Noted</span>
-        </div>
       </div>
       <div class="cw-sig-lane-wrap" id="sigLaneWrap">
         <svg id="sigLaneSvg" viewBox="0 0 630 152" preserveAspectRatio="none" aria-hidden="true"></svg>
@@ -2343,22 +2266,18 @@ p.cw-src-meta{font-size:var(--ui-fs-label)}
       </div>
 
       <div class="cw-csh-recv cw-panel frost2">
-        <h3 class="cw-csh-recv-h">Receivables</h3>
-        <p class="cw-csh-recv-sub num">184.6k outstanding</p>
-        <div class="cw-csh-aging" aria-hidden="true">
+        <div class="cw-csh-recv-head">
+          <h3 class="cw-csh-recv-h">Receivables</h3>
+          <span class="cw-csh-recv-total num">184.6k</span>
+        </div>
+        <div class="cw-csh-aging" role="img" aria-label="Receivables by age: 52 percent current, 24 percent 31 to 60 days, 15 percent 61 to 90 days, 9 percent over 90 days">
           <span style="width:52%;background:var(--cw-actual)"></span>
           <span style="width:24%;background:var(--cw-plan)"></span>
           <span style="width:15%;background:var(--warn)"></span>
           <span style="width:9%;background:var(--danger)"></span>
         </div>
-        <div class="cw-csh-aging-legend">
-          <span class="cw-csh-aging-item num"><span class="cw-csh-aging-dot" style="background:var(--cw-actual)" aria-hidden="true"></span>Current</span>
-          <span class="cw-csh-aging-item num"><span class="cw-csh-aging-dot" style="background:var(--cw-plan)" aria-hidden="true"></span>31-60d</span>
-          <span class="cw-csh-aging-item num"><span class="cw-csh-aging-dot" style="background:var(--warn)" aria-hidden="true"></span>61-90d</span>
-          <span class="cw-csh-aging-item num"><span class="cw-csh-aging-dot" style="background:var(--danger)" aria-hidden="true"></span>90d+</span>
-        </div>
+        <div class="cw-csh-aging-ends" aria-hidden="true"><span>Current</span><span>Over 90 days</span></div>
         <div class="cw-csh-hair"></div>
-        <p class="cw-csh-queue-label">The collections queue</p>
         <div class="cw-csh-queue">
           <div class="cw-csh-qrow">
             <div class="cw-csh-qrow-top"><span class="cw-csh-qrow-name">Fairfield Group</span><span class="cw-csh-qrow-amt num">24.1k</span></div>
@@ -2373,9 +2292,7 @@ p.cw-src-meta{font-size:var(--ui-fs-label)}
             <p class="cw-csh-qrow-state">Call scheduled for Thursday</p>
           </div>
         </div>
-        <div class="cw-csh-hair"></div>
         <button type="button" class="cw-csh-btn">Approve the escalation</button>
-        <p class="cw-csh-btn-note">The agent drafted it. Nothing goes out until you approve.</p>
       </div>
     </div>
 
@@ -2388,11 +2305,11 @@ p.cw-src-meta{font-size:var(--ui-fs-label)}
         <div class="cw-csh-pay-cells">
           <div class="cw-csh-pay-cell">
             <div class="cw-csh-pay-row1"><span class="cw-csh-pay-vendor">Ashgrove Logistics</span><span class="cw-csh-pay-amt num">38.2k</span></div>
-            <div class="cw-csh-pay-row2"><span class="cw-csh-pay-date num">Fri 11 Sep</span><span class="cw-csh-pill info">Scheduled</span></div>
+            <div class="cw-csh-pay-row2"><span class="cw-csh-pay-date num">Fri 11 Sep</span><span class="cw-csh-pay-state">Scheduled</span></div>
           </div>
           <div class="cw-csh-pay-cell">
             <div class="cw-csh-pay-row1"><span class="cw-csh-pay-vendor">Meridian Packaging</span><span class="cw-csh-pay-amt num">21.9k</span></div>
-            <div class="cw-csh-pay-row2"><span class="cw-csh-pay-date num">Mon 14 Sep</span><span class="cw-csh-pill info">Scheduled</span></div>
+            <div class="cw-csh-pay-row2"><span class="cw-csh-pay-date num">Mon 14 Sep</span><span class="cw-csh-pay-state">Scheduled</span></div>
           </div>
           <div class="cw-csh-pay-cell">
             <div class="cw-csh-pay-row1"><span class="cw-csh-pay-vendor">Corbin Freight</span><span class="cw-csh-pay-amt num">14.4k</span></div>
@@ -2400,7 +2317,7 @@ p.cw-src-meta{font-size:var(--ui-fs-label)}
           </div>
           <div class="cw-csh-pay-cell">
             <div class="cw-csh-pay-row1"><span class="cw-csh-pay-vendor">Northline Utilities</span><span class="cw-csh-pay-amt num">3.1k</span></div>
-            <div class="cw-csh-pay-row2"><span class="cw-csh-pay-date num">Wed 16 Sep</span><span class="cw-csh-pill ok">Approved</span></div>
+            <div class="cw-csh-pay-row2"><span class="cw-csh-pay-date num">Wed 16 Sep</span><span class="cw-csh-pay-state">Approved</span></div>
           </div>
         </div>
       </div>
@@ -2414,7 +2331,7 @@ p.cw-src-meta{font-size:var(--ui-fs-label)}
     <div class="cw-src-row-a">
       <div class="cw-src-intro">
         <p class="cw-src-head">Eight systems, all read only.</p>
-        <p class="cw-src-meta">khyzr reads them inside your AWS account. Nothing is copied out, and freshness is checked every five minutes.</p>
+        <p class="cw-src-meta">khyzr reads them inside your AWS account. Nothing is copied out.</p>
       </div>
       <div class="cw-src-kpis cw-panel">
         <div class="cw-src-kpi">
@@ -2460,31 +2377,31 @@ p.cw-src-meta{font-size:var(--ui-fs-label)}
               <span class="cw-src-log-time num">07:00</span>
               <span class="cw-src-log-source">NetSuite</span>
               <span class="cw-src-log-rows num">184k</span>
-              <span class="cw-src-log-pill ok">Clean</span>
+              <span></span>
             </div>
             <div class="cw-src-log-row">
               <span class="cw-src-log-time num">06:58</span>
               <span class="cw-src-log-source">Stripe</span>
               <span class="cw-src-log-rows num">62k</span>
-              <span class="cw-src-log-pill ok">Clean</span>
+              <span></span>
             </div>
             <div class="cw-src-log-row">
               <span class="cw-src-log-time num">06:56</span>
               <span class="cw-src-log-source">Shopify</span>
               <span class="cw-src-log-rows num">341k</span>
-              <span class="cw-src-log-pill ok">Clean</span>
+              <span></span>
             </div>
             <div class="cw-src-log-row">
               <span class="cw-src-log-time num">06:54</span>
               <span class="cw-src-log-source">Salesforce</span>
               <span class="cw-src-log-rows num">28k</span>
-              <span class="cw-src-log-pill ok">Clean</span>
+              <span></span>
             </div>
             <div class="cw-src-log-row">
               <span class="cw-src-log-time num">06:51</span>
               <span class="cw-src-log-source">AWS CloudTrail</span>
               <span class="cw-src-log-rows num">96k</span>
-              <span class="cw-src-log-pill ok">Clean</span>
+              <span></span>
             </div>
             <div class="cw-src-log-row">
               <span class="cw-src-log-time num">06:19</span>
@@ -2552,42 +2469,28 @@ p.cw-src-meta{font-size:var(--ui-fs-label)}
     </div>
   </div>
 
+  <!-- the three feature crops (28 Sep 2026, re-sourced): an excerpt of each screen behind the rail
+       -- the evidence behind a signal, cash thirteen weeks out, the six agents and what feeds them --
+       where the old three repeated Home, which sits directly above them. Each is decorative
+       (aria-hidden); its caption says what it shows. -->
   <div class="con-crops">
     <div class="con-crop">
       <div class="con-crop-plate lift1 edge-lit">
-        <div class="con-crop-inner con-crop-decision">
-          <div class="cw-decision cw-panel frost2">
-            <div class="cw-dec-top">
-              <span class="cw-dec-tag"><span class="cw-dec-dot" aria-hidden="true"></span><span>Decision</span></span>
-              <span class="cw-dec-more" aria-hidden="true"><i></i><i></i><i></i></span>
+        <div class="con-crop-inner con-crop-signal" data-ref="350" aria-hidden="true">
+          <!-- the Signals detail for its first signal, as detailHTML() renders it, cut to the alert
+               and its evidence and set on the plate itself; classes only, no ids -->
+          <div class="con-crop-card">
+            <div class="cw-sig-det-top">
+              <span class="cw-sig-pill critical"><span class="cw-sig-pill-dot"></span>Critical</span>
+              <span class="cw-sig-det-time num">07:02</span>
             </div>
-            <h3 class="cw-dec-title">Growth is getting concentrated.</h3>
-            <p class="cw-dec-sub">Your top 3 accounts now contribute 41% of revenue.</p>
-            <div class="cw-dec-stats">
-              <div class="cw-dec-stat">
-                <p class="cw-dec-stat-label">Concentration</p>
-                <div class="cw-dec-stat-fig"><span class="cw-dec-stat-num num">41%</span><span class="cw-dec-stat-delta num">+7 pts</span></div>
-              </div>
-              <div class="cw-dec-stat">
-                <p class="cw-dec-stat-label">Exposure</p>
-                <div class="cw-dec-stat-fig"><span class="cw-dec-stat-num num">3</span><span class="cw-dec-stat-unit">accounts</span></div>
-              </div>
+            <p class="cw-sig-det-title">Three invoices past sixty days at Fairfield Group.</p>
+            <div class="cw-sig-evidence">
+              <div class="cw-sig-ev-row"><span>INV-8841</span><span class="num">12.4k</span><span class="num">74 days</span></div>
+              <div class="cw-sig-ev-row"><span>INV-8902</span><span class="num">7.9k</span><span class="num">68 days</span></div>
+              <div class="cw-sig-ev-row"><span>INV-8950</span><span class="num">3.8k</span><span class="num">61 days</span></div>
+              <div class="cw-sig-ev-row total"><span>Total</span><span class="num">24.1k</span><span></span></div>
             </div>
-            <div class="cw-dec-bar" aria-hidden="true"><span style="width:41%;background:var(--cw-actual)"></span><span style="width:28%;background:var(--cw-plan)"></span><span style="width:31%;background:rgba(255,255,255,.14)"></span></div>
-            <div class="cw-dec-legend">
-              <span class="cw-dec-legend-item"><span class="cw-dec-legend-dot" style="background:var(--cw-actual)"></span>Top 3 accounts 41%</span>
-              <span class="cw-dec-legend-item"><span class="cw-dec-legend-dot" style="background:var(--cw-plan)"></span>Next 7 28%</span>
-              <span class="cw-dec-legend-item"><span class="cw-dec-legend-dot" style="background:rgba(255,255,255,.14)"></span>All others 31%</span>
-            </div>
-            <div class="cw-dec-upside">
-              <span class="cw-dec-fig num">+18.4k</span><span class="cw-dec-fig-label">potential monthly upside</span>
-            </div>
-            <div class="cw-dec-move">
-              <p class="cw-dec-move-label">Recommended next move</p>
-              <p class="cw-dec-move-title">Expand beyond your top accounts.</p>
-              <p class="cw-dec-move-line">12 customers show strong expansion signals.</p>
-            </div>
-            <button type="button" class="cw-btn" tabindex="-1" aria-hidden="true">Review expansion plan</button>
           </div>
         </div>
       </div>
@@ -2595,103 +2498,54 @@ p.cw-src-meta{font-size:var(--ui-fs-label)}
       <p class="sm">Not just an alert. The numbers behind it, and what to do next.</p>
     </div>
     <div class="con-crop">
-      <div class="con-crop-plate con-crop-mask-x con-crop-mask-y lift1 edge-lit">
-        <div class="con-crop-inner con-crop-traj">
-          <!-- the head block is dropped here (18 Sep FIX): it duplicated the crop's own caption
-               below the plate and was eating the frame's top third with mostly empty space -->
-          <div class="cw-chart-wrap" style="min-height:260px">
-            <svg viewBox="0 0 648 300" preserveAspectRatio="none" aria-hidden="true">
-              <defs>
-                <linearGradient id="cwAreaFillCrop" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="var(--cw-actual)" stop-opacity=".12"/>
-                  <stop offset="100%" stop-color="var(--cw-actual)" stop-opacity="0"/>
-                </linearGradient>
-                <linearGradient id="cwSeriesStrokeCrop" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stop-color="var(--cw-actual)"/>
-                  <stop offset="100%" stop-color="var(--cw-live)"/>
-                </linearGradient>
-                <linearGradient id="cwExpStrokeCrop" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stop-color="var(--cw-plan)"/>
-                  <stop offset="100%" stop-color="var(--cw-focus)"/>
-                </linearGradient>
-              </defs>
-              <line class="cw-gridline" x1="32" y1="40" x2="648" y2="40"/>
-              <line class="cw-gridline" x1="32" y1="130" x2="648" y2="130"/>
-              <line class="cw-gridline" x1="32" y1="220" x2="648" y2="220"/>
-              <text class="cw-glabel num" x="26" y="44" text-anchor="end">180k</text>
-              <text class="cw-glabel num" x="26" y="134" text-anchor="end">90k</text>
-              <text class="cw-glabel num" x="26" y="224" text-anchor="end">0</text>
-              <path class="cw-fan" d="M392,92 L648,48 L648,108 Z"/>
-              <path fill="url(#cwAreaFillCrop)" stroke="none" d="M32,150 L77,146 L122,140 L167,143 L212,134 L257,129 L302,131 L347,122 L392,92 L392,220 L32,220 Z"/>
-              <polyline class="cw-series" points="32,150 77,146 122,140 167,143 212,134 257,129 302,131 347,122 392,92"/>
-              <line class="cw-fc cw-fc-con" x1="392" y1="92" x2="648" y2="108"/>
-              <line class="cw-fc cw-fc-cur" x1="392" y1="92" x2="648" y2="82"/>
-              <line class="cw-fc cw-fc-exp" x1="392" y1="92" x2="648" y2="48"/>
-              <line class="cw-today-line" x1="392" y1="40" x2="392" y2="220"/>
-              <text class="cw-today-label" x="392" y="31" text-anchor="middle">Today</text>
-              <circle class="cw-dot-now-ring" cx="392" cy="92" r="4.5"/>
-              <circle class="cw-dot-now" cx="392" cy="92" r="2.5"/>
-              <circle class="cw-dot-now-ring" cx="648" cy="48" r="4.5"/>
-              <circle class="cw-dot-exp" cx="648" cy="48" r="2.5"/>
-
-              <line class="cw-legend-y" x1="32" y1="273" x2="46" y2="273" stroke="var(--cw-actual)" stroke-width="2"/>
-              <text class="cw-legend-label" fill="var(--cw-actual)" x="52" y="277">Actual</text>
-              <line class="cw-fc cw-fc-exp cw-legend-y" x1="152" y1="273" x2="166" y2="273"/>
-              <text class="cw-legend-label" fill="var(--cw-plan)" x="172" y="277">Expansion plan</text>
-              <line class="cw-fc cw-fc-cur cw-legend-y" x1="312" y1="273" x2="326" y2="273"/>
-              <text class="cw-legend-label" fill="var(--cw-quiet-1)" x="332" y="277">Current path</text>
-              <line class="cw-fc cw-fc-con cw-legend-y" x1="442" y1="273" x2="456" y2="273"/>
-              <text class="cw-legend-label" fill="var(--cw-quiet-1)" x="462" y="277">Conservative</text>
-            </svg>
-            <div class="cw-chip">+14% with expansion</div>
-          </div>
+      <div class="con-crop-plate lift1 edge-lit">
+        <div class="con-crop-inner con-crop-cash" data-ref="300" aria-hidden="true">
+          <!-- generated (28 Sep 2026) from the Cash screen's own data: BASE13, the 250k floor and
+               widen() from the cash module, re-framed on the low; the callout follows resolve()'s
+               rule, 14px clear of the curve under its footprint. Own gradient id (§3.5). -->
+          <svg viewBox="0 0 300 208" width="300" height="208">
+            <defs>
+              <linearGradient id="cshAreaFillCrop" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="var(--a2)" stop-opacity=".1"/>
+                <stop offset="100%" stop-color="var(--a2)" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <line class="cw-csh-gridline" x1="0" y1="67.4" x2="300" y2="67.4"/><line class="cw-csh-gridline" x1="0" y1="131.1" x2="300" y2="131.1"/>
+            <polygon class="cw-csh-band" points="-56,-35.3 -27,-13.6 2,7.7 31,27.9 60,47.3 89,65.7 118,81.9 147,90.4 176,95.1 205,87.1 234,74.3 263,58.9 292,41 292,109 263,122.4 234,133.2 205,141.5 176,144.9 147,135.7 118,122.7 89,101.9 60,79 31,55.1 2,30.4 -27,4.5 -56,-21.7"/>
+            <path fill="url(#cshAreaFillCrop)" stroke="none" d="M-56,-28.5 L-27,-4.5 L2,19 L31,41.5 L60,63.1 L89,83.8 L118,102.3 L147,113 L176,120 L205,114.3 L234,103.8 L263,90.7 L292,75 L292,208 L-56,208 Z"/>
+            <path class="cw-csh-tint" d="M138.5,109.9 L147,113 L176,120 L205,114.3 L217.2,109.9 Z"/>
+            <line class="cw-csh-floor-line" x1="0" y1="109.9" x2="300" y2="109.9"/>
+            <text class="cw-csh-floor-label" x="10" y="124.9">Minimum operating balance</text>
+            <polyline class="cw-csh-series" points="-56,-28.5 -27,-4.5 2,19 31,41.5 60,63.1 89,83.8 118,102.3 147,113 176,120 205,114.3 234,103.8 263,90.7 292,75"/>
+            <line class="cw-csh-callout-leader" x1="176" y1="56.6" x2="176" y2="113"/>
+            <circle class="cw-csh-lowdot" cx="176" cy="120" r="7"/>
+            <text class="cw-csh-xlabel num" x="60" y="198" text-anchor="middle">Wk 5</text><text class="cw-csh-xlabel num" x="118" y="198" text-anchor="middle">Wk 7</text><text class="cw-csh-xlabel num" x="176" y="198" text-anchor="middle">Wk 9</text><text class="cw-csh-xlabel num" x="234" y="198" text-anchor="middle">Wk 11</text>
+          </svg>
+          <div class="cw-csh-callout" style="left:76.5px;top:30.6px"><span class="num">Week 9, 238.1k, 11.9k under your floor</span></div>
         </div>
       </div>
       <h3 class="h3">Trajectory and forecast.</h3>
-      <p class="sm">Where revenue is headed under three different plans.</p>
+      <p class="sm">Where cash is headed, and the week it runs short.</p>
     </div>
     <div class="con-crop">
-      <div class="con-crop-plate con-crop-mask-x lift1 edge-lit">
-        <div class="con-crop-inner con-crop-agents">
-          <!-- hand-authored, mirroring rosterBodyHTML()/schedHTML() in the agents module (Finance's
-               real data from the AGENTS array); classes only, no ids -- §3.5, "the mechanism change" -->
-          <div class="cw-panel frost2" style="width:308px">
-            <p class="cw-agt-trace-head">Last run 07:00, took 6.8 seconds.</p>
-            <div class="cw-agt-trace">
-              <div class="cw-agt-step">
-                <div class="cw-agt-step-rail"><span class="cw-agt-step-ring done"></span></div>
-                <div class="cw-agt-step-body">
-                  <div class="cw-agt-step-top"><span class="cw-agt-step-title">Read four sources</span><span class="cw-agt-step-dur num">1.2s</span></div>
-                  <p class="cw-agt-step-note">NetSuite, Stripe, the bank feed, Shopify</p>
-                </div>
-              </div>
-              <div class="cw-agt-step">
-                <div class="cw-agt-step-rail"><span class="cw-agt-step-ring done"></span></div>
-                <div class="cw-agt-step-body">
-                  <div class="cw-agt-step-top"><span class="cw-agt-step-title">Reconciled 1,284 invoices</span><span class="cw-agt-step-dur num">3.4s</span></div>
-                  <p class="cw-agt-step-note">against the ledger and the bank</p>
-                </div>
-              </div>
-              <div class="cw-agt-step">
-                <div class="cw-agt-step-rail"><span class="cw-agt-step-ring last"></span></div>
-                <div class="cw-agt-step-body">
-                  <div class="cw-agt-step-top"><span class="cw-agt-step-title">Compared to the ninety day pattern</span><span class="cw-agt-step-dur num">0.9s</span></div>
-                  <p class="cw-agt-step-note">looking for drift, not outliers</p>
-                </div>
-              </div>
-            </div>
-            <div class="cw-agt-hr" aria-hidden="true"></div>
-            <div class="cw-agt-sched">
-              <div class="cw-agt-sched-ticks">
-                <span class="cw-agt-sched-tick on" style="--i:0"></span><span class="cw-agt-sched-tick on" style="--i:1"></span><span class="cw-agt-sched-tick on" style="--i:2"></span><span class="cw-agt-sched-tick on" style="--i:3"></span><span class="cw-agt-sched-tick on" style="--i:4"></span><span class="cw-agt-sched-tick on" style="--i:5"></span><span class="cw-agt-sched-tick on" style="--i:6"></span><span class="cw-agt-sched-tick on" style="--i:7"></span><span class="cw-agt-sched-tick on" style="--i:8"></span><span class="cw-agt-sched-tick on" style="--i:9"></span><span class="cw-agt-sched-tick" style="--i:10"></span><span class="cw-agt-sched-tick" style="--i:11"></span><span class="cw-agt-sched-tick" style="--i:12"></span><span class="cw-agt-sched-tick" style="--i:13"></span><span class="cw-agt-sched-tick" style="--i:14"></span><span class="cw-agt-sched-tick" style="--i:15"></span><span class="cw-agt-sched-tick" style="--i:16"></span><span class="cw-agt-sched-tick" style="--i:17"></span><span class="cw-agt-sched-tick" style="--i:18"></span><span class="cw-agt-sched-tick" style="--i:19"></span><span class="cw-agt-sched-tick" style="--i:20"></span><span class="cw-agt-sched-tick" style="--i:21"></span><span class="cw-agt-sched-tick" style="--i:22"></span><span class="cw-agt-sched-tick" style="--i:23"></span>
-                <span class="cw-agt-sched-now" style="left:39.58%"></span>
-              </div>
-              <div class="cw-agt-sched-hours">
-                <span class="cw-agt-sched-hour num" style="left:2.08%">00</span><span class="cw-agt-sched-hour num" style="left:27.08%">06</span><span class="cw-agt-sched-hour num" style="left:52.08%">12</span><span class="cw-agt-sched-hour num" style="left:77.08%">18</span>
-              </div>
-              <p class="cw-agt-sched-label">Runs hourly, and whenever you ask.</p>
-            </div>
-          </div>
+      <div class="con-crop-plate lift1 edge-lit">
+        <div class="con-crop-inner con-crop-map" data-ref="316" aria-hidden="true">
+          <!-- generated (28 Sep 2026) from the Sources screen's own LINKS, re-framed on the agents'
+               column: the eight systems sit off the plate's left edge and their links fade in from
+               it; Finance is lit with its three feeds, the map's own hover treatment. Own ids (§3.5). -->
+          <svg viewBox="0 0 316 219" width="316" height="219">
+            <defs>
+              <linearGradient id="cropMapFadeGrad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="120" y2="0">
+                <stop offset="0" stop-color="#000"/><stop offset="1" stop-color="#fff"/>
+              </linearGradient>
+              <mask id="cropMapFade" maskUnits="userSpaceOnUse" x="0" y="0" width="316" height="219"><rect width="316" height="219" fill="url(#cropMapFadeGrad)"/></mask>
+            </defs>
+            <g mask="url(#cropMapFade)">
+              <path class="cw-src-link" d="M6,-18 C73,-18 73,60 140,60"/><path class="cw-src-link" d="M6,-18 C73,-18 73,192 140,192"/><path class="cw-src-link" d="M6,18.4 C73,18.4 73,60 140,60"/><path class="cw-src-link" d="M6,18.4 C73,18.4 73,93 140,93"/><path class="cw-src-link" d="M6,18.4 C73,18.4 73,192 140,192"/><path class="cw-src-link" d="M6,54.9 C73,54.9 73,93 140,93"/><path class="cw-src-link" d="M6,54.9 C73,54.9 73,159 140,159"/><path class="cw-src-link" d="M6,91.3 C73,91.3 73,159 140,159"/><path class="cw-src-link" d="M6,91.3 C73,91.3 73,192 140,192"/><path class="cw-src-link" d="M6,91.3 C73,91.3 73,93 140,93"/><path class="cw-src-link" d="M6,164.1 C73,164.1 73,126 140,126"/><path class="cw-src-link" d="M6,237 C73,237 73,159 140,159"/>
+              <path class="cw-src-link is-active" d="M6,-18 C73,-18 73,27 140,27"/><path class="cw-src-link is-active" d="M6,127.7 C73,127.7 73,27 140,27"/><path class="cw-src-link is-active" d="M6,200.6 C73,200.6 73,27 140,27"/>
+            </g>
+            <g class="cw-src-chip is-active"><rect class="cw-src-chip-rect" x="140" y="13.5" width="164" height="27" rx="8" ry="8"/><use href="#agIcoFinance" x="152" y="20" width="14" height="14"/><text class="cw-src-chip-label" x="172" y="31">Finance</text></g><g class="cw-src-chip"><rect class="cw-src-chip-rect" x="140" y="46.5" width="164" height="27" rx="8" ry="8"/><use href="#agIcoOperations" x="152" y="53" width="14" height="14"/><text class="cw-src-chip-label" x="172" y="64">Operations</text></g><g class="cw-src-chip"><rect class="cw-src-chip-rect" x="140" y="79.5" width="164" height="27" rx="8" ry="8"/><use href="#agIcoCustomers" x="152" y="86" width="14" height="14"/><text class="cw-src-chip-label" x="172" y="97">Customers</text></g><g class="cw-src-chip"><rect class="cw-src-chip-rect" x="140" y="112.5" width="164" height="27" rx="8" ry="8"/><use href="#agIcoSecurity" x="152" y="119" width="14" height="14"/><text class="cw-src-chip-label" x="172" y="130">Security</text></g><g class="cw-src-chip"><rect class="cw-src-chip-rect" x="140" y="145.5" width="164" height="27" rx="8" ry="8"/><use href="#agIcoStrategy" x="152" y="152" width="14" height="14"/><text class="cw-src-chip-label" x="172" y="163">Strategy</text></g><g class="cw-src-chip"><rect class="cw-src-chip-rect" x="140" y="178.5" width="164" height="27" rx="8" ry="8"/><use href="#agIcoDataquality" x="152" y="185" width="14" height="14"/><text class="cw-src-chip-label" x="172" y="196">Data quality</text></g>
+          </svg>
         </div>
       </div>
       <h3 class="h3">Your agents at work.</h3>
@@ -4118,6 +3972,9 @@ window.L6.cap={apply:applyTunables,restart:apReset,heightNow:heightNow,chatWNow:
     const legY=(bandBottom+53).toFixed(1),legTY=(bandBottom+57).toFixed(1);
     svg.querySelectorAll('.cw-legend-y').forEach(el=>{el.setAttribute('y1',legY);el.setAttribute('y2',legY)});
     svg.querySelectorAll('.cw-legend-t').forEach(el=>el.setAttribute('y',legTY));
+    /* the toggles' hit areas ride with their labels (28 Sep): they were authored at the 300-unit
+       design's y and never moved, so a taller plot left each one under the label it belongs to */
+    svg.querySelectorAll('.cw-legend-hit').forEach(el=>el.setAttribute('y',(bandBottom+44).toFixed(1)));
 
     const chip=$('cwChip');
     if(chip){
@@ -4571,7 +4428,6 @@ window.L6.cap={apply:applyTunables,restart:apReset,heightNow:heightNow,chatWNow:
   ];
   var byId={};
   SIGNALS.forEach(function(s){byId[s.id]=s});
-  function agentSlug(n){return n.toLowerCase().replace(/[^a-z]/g,'')}
 
   /* history dots: the chart covers fourteen days but the row list only ever holds this
      week's seven signals, so the earlier week is represented on the lane chart alone -
@@ -4633,7 +4489,6 @@ window.L6.cap={apply:applyTunables,restart:apReset,heightNow:heightNow,chatWNow:
     });
     for(var i=0;i<14;i++){
       var x=xForDay(i);
-      svg.appendChild(svgEl('line',{'class':'cw-sig-daytick',x1:x,y1:AXIS_TOP,x2:x,y2:AXIS_BOTTOM}));
       if(i%3===0){
         var lab=svgEl('text',{'class':'cw-sig-xlabel num',x:x,y:XLABEL_Y,'text-anchor':i===0?'start':'middle'});
         lab.textContent=dateLabelForIndex(i);
@@ -4758,10 +4613,6 @@ window.L6.cap={apply:applyTunables,restart:apReset,heightNow:heightNow,chatWNow:
         '<span class="cw-sig-row-dot '+s.lane+'" aria-hidden="true"></span>'+
         '<span class="cw-sig-row-main">'+
           '<span class="cw-sig-row-title">'+s.title+'</span>'+
-          /* the drawn icon turns to mush at 10px on the real GPU (I1, 18 Sep round 3) -- this
-             line keeps a 6px solid dot in the agent's colour instead, per the client's own
-             fallback; every other appearance uses the full icon. */
-          '<span class="cw-sig-row-sub"><span class="cw-agdot" style="background:var(--ag-'+agentSlug(s.agent)+'-1)" aria-hidden="true"></span>'+s.source+', '+s.agent+' agent</span>'+
         '</span>'+
         '<span class="cw-sig-row-time num">'+s.time+'</span>';
       btn.addEventListener('click',function(){selectSignal(s.id)});
@@ -4815,11 +4666,11 @@ window.L6.cap={apply:applyTunables,restart:apReset,heightNow:heightNow,chatWNow:
       '<div class="cw-sig-hr" aria-hidden="true"></div>'+
       '<p class="cw-sig-det-label">Evidence</p>'+
       '<div class="cw-sig-evidence">'+renderEvidence(s.evidence)+'</div>'+
-      '<div class="cw-sig-hr" aria-hidden="true"></div>'+
-      '<p class="cw-sig-det-label">Confidence</p>'+
+      /* 28 Sep (the declutter pass): no second rule and no "Confidence" label -- the meter and
+         its one line say it together, under the evidence they qualify */
       '<div class="cw-sig-conf">'+
         '<div class="cw-sig-conf-bar" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div>'+
-        '<p class="cw-sig-conf-text">High, from four sources</p>'+
+        '<p class="cw-sig-conf-text">High confidence, from four sources</p>'+
       '</div>'+
       '<div class="cw-sig-det-spacer" aria-hidden="true"></div>'+
       '<div class="cw-sig-det-actions">'+
@@ -4923,11 +4774,6 @@ window.L6.cap={apply:applyTunables,restart:apReset,heightNow:heightNow,chatWNow:
         ['Wrote the morning brief','1.1s','sent 07:00 to four people']
       ],
       lastRun:'Last run 07:00, took 6.8 seconds.',
-      output:[
-        ['Morning brief','sent 07:00'],
-        ['Collections plan','drafted, waiting for you'],
-        ['Exception list','3 items']
-      ],
       runs:[
         ['07:00','6.8s','Reconciled 1,284 invoices against the ledger','warn','1 finding'],
         ['06:00','4.0s','Checked the bank feed against NetSuite','ok','Clean'],
@@ -4949,11 +4795,6 @@ window.L6.cap={apply:applyTunables,restart:apReset,heightNow:heightNow,chatWNow:
         ['Updated the account notes','0.9s','']
       ],
       lastRun:'Last run 07:00, took 6.3 seconds.',
-      output:[
-        ['Account scores','updated for 312 accounts'],
-        ['Expansion flags','2 accounts flagged'],
-        ['Account notes','updated']
-      ],
       runs:[
         ['07:00','6.3s','Scored 312 accounts for health and usage','warn','1 finding'],
         ['06:00','5.1s','Checked reorder rhythm against last quarter','ok','Clean'],
@@ -4975,11 +4816,6 @@ window.L6.cap={apply:applyTunables,restart:apReset,heightNow:heightNow,chatWNow:
         ['Drafted a reorder','0.7s','waiting for your approval']
       ],
       lastRun:'Running now, 7.0 seconds so far.',
-      output:[
-        ['Cover forecast','updated for 84 lines'],
-        ['Reorder draft','waiting for your approval'],
-        ['Supplier check','no change']
-      ],
       runs:[
         ['now','7.0s','Projecting cover for 84 lines','warn','1 finding'],
         ['08:00','6.6s','Checked supplier lead times','ok','Clean'],
@@ -5001,11 +4837,6 @@ window.L6.cap={apply:applyTunables,restart:apReset,heightNow:heightNow,chatWNow:
         ['Prepared the fix','1.4s','rotate the key, restrict the role']
       ],
       lastRun:'Last run 06:12, took 5.6 seconds.',
-      output:[
-        ['Identity review','46 identities checked'],
-        ['Critical finding','1 open'],
-        ['Fix','prepared, waiting for you']
-      ],
       runs:[
         ['06:12','5.6s','Checked 46 identities against the baseline','danger','Critical'],
         ['05:00','5.0s','Checked 46 identities against the baseline','ok','Clean'],
@@ -5027,10 +4858,6 @@ window.L6.cap={apply:applyTunables,restart:apReset,heightNow:heightNow,chatWNow:
         ['Wrote the note','0.8s','']
       ],
       lastRun:'Last run 06:30, took 6.6 seconds.',
-      output:[
-        ['Competitor tracking','22 lines updated'],
-        ['Price note','written, waiting for you']
-      ],
       runs:[
         ['06:30','6.6s','Tracked 22 competitor lines','warn','1 finding'],
         ['05:00','6.0s','Tracked 22 competitor lines','ok','Clean'],
@@ -5052,11 +4879,6 @@ window.L6.cap={apply:applyTunables,restart:apReset,heightNow:heightNow,chatWNow:
         ['Cleared the sources for the day','0.4s','']
       ],
       lastRun:'Last run 07:00, took 6.5 seconds.',
-      output:[
-        ['Freshness check','96 tables, no breaks'],
-        ['Join validation','41 joins checked'],
-        ['Source clearance','complete for today']
-      ],
       runs:[
         ['07:00','6.5s','Checked 96 tables for freshness','ok','Clean'],
         ['06:00','6.2s','Validated 41 joins across the model','ok','Clean'],
@@ -5081,7 +4903,7 @@ window.L6.cap={apply:applyTunables,restart:apReset,heightNow:heightNow,chatWNow:
   var fadeTimer=null;
   var pulseRaf=null,pulseStart=0;
 
-  function outcomeCls(word){return word==='Clean'?'ok':(word==='Critical'?'danger':'warn')}
+  function outcomeCls(word){return word==='Critical'?'danger':'warn'}   /* Clean has no pill (28 Sep) */
 
   /* row B (roster + detail) is given whatever vertical budget the locked screen height
      leaves after row A, so the two panels reach the same bottom edge as the home screen's
@@ -5133,7 +4955,6 @@ window.L6.cap={apply:applyTunables,restart:apReset,heightNow:heightNow,chatWNow:
     return '<div class="cw-agt-sched">'+
         '<div class="cw-agt-sched-ticks">'+ticks+'<span class="cw-agt-sched-now" style="left:'+schedPct(CUR_HOUR)+'%"></span></div>'+
         '<div class="cw-agt-sched-hours">'+hours+'</div>'+
-        '<p class="cw-agt-sched-label">Runs hourly, and whenever you ask.</p>'+
       '</div>';
   }
 
@@ -5144,20 +4965,17 @@ window.L6.cap={apply:applyTunables,restart:apReset,heightNow:heightNow,chatWNow:
           '<div class="cw-agt-step-rail"><span class="cw-agt-step-ring '+ringCls+'"></span></div>'+
           '<div class="cw-agt-step-body">'+
             '<div class="cw-agt-step-top"><span class="cw-agt-step-title">'+t[0]+'</span><span class="cw-agt-step-dur num">'+t[1]+'</span></div>'+
-            (t[2]?'<p class="cw-agt-step-note">'+t[2]+'</p>':'')+
           '</div>'+
         '</div>';
     }).join('');
-    var output=(a.output||[]).map(function(o){
-      return '<div class="cw-agt-output-row"><span class="cw-agt-output-name">'+o[0]+'</span><span class="cw-agt-output-state">'+o[1]+'</span></div>';
-    }).join('');
+    /* 28 Sep 2026 (the declutter pass): the run reads as five steps, a title and a time each.
+       The note under every step (9px, the smallest size on the page) and the "Today's output"
+       block, which restated the trace's own last step, are gone, and so is AGENTS' output data;
+       each trace entry keeps its note as a third field, unread by this body. */
     return '<p class="cw-agt-trace-head">'+a.lastRun+'</p>'+
       '<div class="cw-agt-trace" id="agtTrace">'+steps+'<span class="cw-agt-pulse" id="agtPulse" aria-hidden="true"><span class="cw-agt-pulse-dot"></span></span></div>'+
       '<div class="cw-agt-hr" aria-hidden="true"></div>'+
       schedHTML()+
-      '<div class="cw-agt-hr" aria-hidden="true"></div>'+
-      '<p class="cw-agt-output-head">Today’s output</p>'+
-      '<div class="cw-agt-output">'+output+'</div>'+
       '<div class="cw-agt-det-actions">'+
         '<button type="button" class="cw-agt-btn-primary">View the last brief</button>'+
         '<button type="button" class="cw-agt-btn-ghost">Pause agent</button>'+
@@ -5171,7 +4989,7 @@ window.L6.cap={apply:applyTunables,restart:apReset,heightNow:heightNow,chatWNow:
           '<span class="cw-agt-run-time num">'+r[0]+'</span>'+
           '<span class="cw-agt-run-dur num">'+r[1]+'</span>'+
           '<span class="cw-agt-run-desc">'+r[2]+'</span>'+
-          '<span class="cw-agt-run-pill '+cls+'">'+r[4]+'</span>'+
+          (r[4]==='Clean'?'<span class="cw-agt-run-clean">Clean</span>':'<span class="cw-agt-run-pill '+cls+'">'+r[4]+'</span>')+
         '</div>';
     }).join('');
     return '<p class="cw-agt-runs-head">148 runs today, 3 with findings.</p>'+
@@ -5460,7 +5278,9 @@ window.L6.cap={apply:applyTunables,restart:apReset,heightNow:heightNow,chatWNow:
       st.dotRing.setAttribute('cx',xs[0].toFixed(1));st.dotNow.setAttribute('cx',xs[0].toFixed(1));
 
       st.xlabels.innerHTML='';
-      var step=Math.max(1,Math.ceil(n/14));
+      /* 28 Sep (the declutter pass): about seven labels across any horizon, not up to fourteen --
+         at 13 weeks that is every other week, and Wk 12 no longer butts into Wk 13 */
+      var step=Math.max(1,Math.ceil(n/7));
       var shown=[];
       for(var j=0;j<n;j+=step)shown.push(j);
       if(shown[shown.length-1]!==n-1)shown.push(n-1);
@@ -5743,9 +5563,16 @@ window.L6.cap={apply:applyTunables,restart:apReset,heightNow:heightNow,chatWNow:
         rect.setAttribute('class','cw-src-chip-rect');rect.setAttribute('rx','8');rect.setAttribute('ry','8');
         rect.setAttribute('width',CHIP_W);rect.setAttribute('height',CHIP_H);
         g.appendChild(rect);
-        var dot=document.createElementNS(svgNS,'circle');
-        dot.setAttribute('class','cw-src-dot '+item.status);dot.setAttribute('r','2.5');
-        g.appendChild(dot);
+        /* 28 Sep 2026 (the declutter pass): colour only the exception. Fourteen status dots and
+           eight "N min" ages made every chip say something; now a healthy source is its name, an
+           agent is its mark and name, and the one late feed carries the dot and its age. */
+        var late=kind==='source'&&item.status!=='ok';
+        var dot=null;
+        if(late){
+          dot=document.createElementNS(svgNS,'circle');
+          dot.setAttribute('class','cw-src-dot '+item.status);dot.setAttribute('r','2.5');
+          g.appendChild(dot);
+        }
         var idmark=null;
         if(kind==='agent'){
           var symId={finance:'Finance',customers:'Customers',operations:'Operations',security:'Security',strategy:'Strategy',dataquality:'Dataquality'}[item.id];
@@ -5761,9 +5588,9 @@ window.L6.cap={apply:applyTunables,restart:apReset,heightNow:heightNow,chatWNow:
         label.setAttribute('class','cw-src-chip-label');
         label.textContent=item.label;
         g.appendChild(label);
-        if(kind==='source'){
+        if(late){
           var age=document.createElementNS(svgNS,'text');
-          age.setAttribute('class','cw-src-chip-age num');
+          age.setAttribute('class','cw-src-chip-age num '+item.status);
           age.setAttribute('text-anchor','end');
           age.textContent=item.age+' min';
           g.appendChild(age);
@@ -5807,15 +5634,15 @@ window.L6.cap={apply:applyTunables,restart:apReset,heightNow:heightNow,chatWNow:
       [SOURCES,AGENTS].forEach(function(list){
         list.forEach(function(it){
           it.rect.setAttribute('x',it.x);it.rect.setAttribute('y',it.y);
-          it.dot.setAttribute('cx',it.x+14);it.dot.setAttribute('cy',it.cy);
+          if(it.dot){it.dot.setAttribute('cx',it.x+CHIP_W-14);it.dot.setAttribute('cy',it.cy)}
           if(it.idmark){
-            it.idmark.setAttribute('x',it.x+22);it.idmark.setAttribute('y',(it.cy-7).toFixed(1));
-            it.label.setAttribute('x',it.x+42);
+            it.idmark.setAttribute('x',it.x+12);it.idmark.setAttribute('y',(it.cy-7).toFixed(1));
+            it.label.setAttribute('x',it.x+32);
           }else{
-            it.label.setAttribute('x',it.x+24);
+            it.label.setAttribute('x',it.x+12);
           }
           it.label.setAttribute('y',(it.cy+4).toFixed(1));
-          if(it.ageEl){it.ageEl.setAttribute('x',it.x+CHIP_W-10);it.ageEl.setAttribute('y',(it.cy+4).toFixed(1))}
+          if(it.ageEl){it.ageEl.setAttribute('x',it.x+CHIP_W-24);it.ageEl.setAttribute('y',(it.cy+4).toFixed(1))}
         });
       });
 
@@ -5932,6 +5759,28 @@ window.L6.cap={apply:applyTunables,restart:apReset,heightNow:heightNow,chatWNow:
       this.setTabView(id);
     }
   });
+})();
+
+/* the three feature crops (28 Sep 2026): each excerpt is authored in design px in a box of its
+   plate's own 346:240 shape, data-ref wide, and scaled to the plate by --crop-s = plate width /
+   data-ref -- one picture at every width, never re-cut. Runs whether or not the console window is
+   shown (the crops carry the section alone at 640 and under). */
+(function(){
+  var inners=[].slice.call(document.querySelectorAll('.con-crop-inner[data-ref]'));
+  if(!inners.length)return;
+  function fit(){
+    inners.forEach(function(el){
+      var w=el.parentElement.clientWidth,ref=+el.getAttribute('data-ref');
+      if(w>0&&ref>0)el.style.setProperty('--crop-s',(w/ref).toFixed(5));
+    });
+  }
+  if(window.ResizeObserver){
+    var ro=new ResizeObserver(fit);
+    inners.forEach(function(el){ro.observe(el.parentElement)});
+  }else{
+    addEventListener('resize',fit);
+  }
+  fit();
 })();
 
 (function(){
